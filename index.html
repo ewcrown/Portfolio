@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harris Khan - Full-Stack Developer & Shopify Specialist</title>
+    <meta name="description" content="Shopify Developer with 5+ years experience. 40+ projects built across Shopify, WordPress, MERN, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e27;
+            --bg-secondary: #16213e;
+            --primary: #a855f7;
+            --primary-dark: #7c3aed;
+            --secondary: #ec4899;
+            --accent: #f97316;
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 45% 1fr;
+            gap: 8rem;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 500px;
+        }
+
+        .hero-left-top {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        .hero .title {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.8;
+            max-width: 400px;
+        }
+
+        .hero-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 4rem 0 5rem;
+        }
+
+        .hero-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hero-nav-item::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .hero-nav-item:hover {
+            color: var(--primary);
+        }
+
+        .hero-nav-item:hover::before {
+            width: 60px;
+            background: var(--primary);
+        }
+
+        .hero-nav-item.active {
+            color: var(--text);
+        }
+
+        .hero-nav-item.active::before {
+            width: 60px;
+            background: var(--text);
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .hero-socials a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .hero-socials a:hover {
+            color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .hero-right {
+            animation: fadeInRight 0.8s ease-out;
+            max-width: 600px;
+        }
+
+        .hero-bio {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .hero-bio p {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-bio strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .hero {
+                grid-template-columns: 40% 1fr;
+                gap: 4rem;
+                padding: 6rem 2rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 6rem 2rem 4rem;
+                min-height: auto;
+            }
+
+            .hero-left {
+                min-height: auto;
+            }
+
+            .hero-nav {
+                margin: 2rem 0 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .title {
+                font-size: 1rem;
+            }
+
+            .hero .tagline {
+                font-size: 0.9rem;
+            }
+
+            .hero-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .hero-nav-item {
+                font-size: 0.7rem;
+            }
+
+            .hero-nav-item::before {
+                width: 20px;
+            }
+
+            .hero-nav-item:hover::before,
+            .hero-nav-item.active::before {
+                width: 40px;
+            }
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(168, 85, 247, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(168, 85, 247, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(15px); }
+        }
+
+        .scroll-indicator span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-title-accent {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            font-weight: 500;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: linear-gradient(180deg, rgba(168, 85, 247, 0.05) 0%, transparent 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05));
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            box-shadow: 0 16px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-card li::before {
+            content: '●';
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* ===== PROJECTS SECTION - MASONRY ===== */
+        .projects {
+            background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.03) 100%);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: rgba(168, 85, 247, 0.08);
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-transform: capitalize;
+        }
+
+        .filter-tab:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+        }
+
+        .projects-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            grid-auto-rows: auto;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05));
+            border: 2px solid rgba(168, 85, 247, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.25);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            width: fit-content;
+        }
+
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .project-url {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05));
+            border-top: 2px solid rgba(168, 85, 247, 0.2);
+            border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 16px 48px rgba(168, 85, 247, 0.2);
+        }
+
+        .stat-box:hover::before {
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience {
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.03) 0%, transparent 100%);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05));
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 4px solid var(--bg);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.3);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(8px);
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(236, 72, 153, 0.08));
+        }
+
+        .timeline-item h3 {
+            color: var(--text);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .timeline-item .role {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(249, 115, 22, 0.05));
+            border-top: 2px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .contact-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05));
+            padding: 2rem;
+            border: 2px solid rgba(168, 85, 247, 0.15);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            box-shadow: 0 16px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a,
+        .contact-item span {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(168, 85, 247, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 2px solid rgba(168, 85, 247, 0.2);
+            font-size: 0.9rem;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 8rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-masonry {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="nav-brand">Harris Khan</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-left">
+            <div class="hero-left-top">
+                <h1>Harris Khan</h1>
+                <div class="title">Frontend Engineer</div>
+                <p class="tagline">I build accessible, pixel-perfect user interfaces and seamless e-commerce experiences. Crafting thoughtful, inclusive digital products with a sharp eye for the details that matter.</p>
+            </div>
+
+            <div class="hero-nav">
+                <a href="#about" class="hero-nav-item">About</a>
+                <a href="#experience" class="hero-nav-item">Experience</a>
+                <a href="#work" class="hero-nav-item">Projects</a>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://github.com/ewcrown" target="_blank" rel="noopener noreferrer" title="GitHub">gh</a>
+                <a href="https://linkedin.com/in/harris-khan-0a9b64427" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
+                <a href="mailto:dev.harris.khan@gmail.com" title="Email">✉</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-bio">
+                <p>Hi there! I'm Harris Khan, and I like building things. I'm a <strong>frontend engineer</strong> with expertise in crafting accessible, pixel-perfect user interfaces. I take pride in creating thoughtful, inclusive products and have a sharp eye for the little details that separate a good product from an exceptional one. I enjoy working most at the intersection of design and engineering, where great user experience meets clean, scalable code.</p>
+
+                <p>Currently, I'm a <strong>Frontend Engineer</strong> with 5+ years of hands-on experience building high-performance e-commerce platforms and web applications. I specialize in <strong>Shopify development</strong> (both Plus and Standard tiers), custom WordPress solutions, and modern JavaScript frameworks. I've delivered <strong>40+ projects</strong> for clients across the UK, USA, Germany, UAE, and Pakistan.</p>
+
+                <p>I lead engineering efforts across frontend architecture and component systems, partnering closely with designers and product teams to ensure accessibility is built into the foundation of everything I ship.</p>
+
+                <p>In my spare time, you can usually find me exploring new design patterns, contributing to open-source projects, or diving deep into frontend performance optimization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About <span class="section-title-accent">Me</span></h2>
+                <p class="section-subtitle">Building digital solutions that drive real business results</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a <strong>full-stack developer</strong> with 5+ years of hands-on experience building high-performance e-commerce platforms and web applications for clients across the UK, USA, Germany, UAE, and Pakistan.</p>
+                    <p>My expertise spans <strong>Shopify development</strong> (both Plus and Standard tiers), custom WordPress solutions, MERN stack applications, HubSpot CMS, and BigCommerce implementations. Every project is an opportunity to solve complex problems and deliver measurable value.</p>
+                    <p>I specialize in creating <strong>fast, accessible, and conversion-optimized</strong> digital experiences that balance beautiful design with solid technical implementation.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Platforms</h3>
+                        <ul>
+                            <li>Shopify Plus & Standard</li>
+                            <li>WordPress & WooCommerce</li>
+                            <li>HubSpot CMS</li>
+                            <li>BigCommerce</li>
+                            <li>MERN Stack</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Front-End</h3>
+                        <ul>
+                            <li>Liquid & JSON Templates</li>
+                            <li>HTML5, CSS3, JavaScript ES6+</li>
+                            <li>React & Next.js</li>
+                            <li>Responsive Design</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Back-End</h3>
+                        <ul>
+                            <li>Node.js & Express</li>
+                            <li>MongoDB & MySQL</li>
+                            <li>PHP & WordPress</li>
+                            <li>REST & GraphQL APIs</li>
+                            <li>Database Design</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Expertise</h3>
+                        <ul>
+                            <li>Theme Development</li>
+                            <li>CMS Migration</li>
+                            <li>SEO Optimization</li>
+                            <li>App Integrations</li>
+                            <li>Performance Tuning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Masonry Layout -->
+    <section class="projects" id="work">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured <span class="section-title-accent">Projects</span></h2>
+                <p class="section-subtitle">40+ successful projects across multiple platforms and industries</p>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterProjects('all')">All (49)</button>
+                <button class="filter-tab" onclick="filterProjects('shopify')">Shopify (36)</button>
+                <button class="filter-tab" onclick="filterProjects('wordpress')">WordPress (6)</button>
+                <button class="filter-tab" onclick="filterProjects('mern')">MERN (2)</button>
+                <button class="filter-tab" onclick="filterProjects('other')">Other (5)</button>
+            </div>
+
+            <div class="projects-masonry" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional <span class="section-title-accent">Journey</span></h2>
+                <p class="section-subtitle">5+ years of building, learning, and delivering</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Gofunnels</h3>
+                    <div class="role">Shopify Developer</div>
+                    <div class="date">Jan 2024 – Aug 2026</div>
+                    <p>Built custom Shopify sections and theme customizations with Liquid, JSON templates and JavaScript. Optimized store performance and integrated third-party apps.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Ebakery</h3>
+                    <div class="role">Shopify Developer</div>
+                    <div class="date">2023 – 2024</div>
+                    <p>Delivered custom Shopify solutions including theme customization, app integrations and performance optimization. Migrated websites between CMS platforms.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Qwerty Experts</h3>
+                    <div class="role">Frontend Developer (WordPress & Shopify)</div>
+                    <div class="date">2022 – 2023</div>
+                    <p>Developed responsive web applications using HTML5, CSS3, JavaScript, PHP and MySQL. Improved website performance by 70%. Mentored 6 team members.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Enigma AI</h3>
+                    <div class="role">Frontend Developer (WordPress & Shopify)</div>
+                    <div class="date">2021 – 2022</div>
+                    <p>Customized WordPress themes and templates from design mockups. Built custom WordPress plugins using PHP, MySQL, JavaScript and CSS.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Growex</h3>
+                    <div class="role">Shopify Developer</div>
+                    <div class="date">2020 – 2021</div>
+                    <p>Built custom Shopify themes and sections with Liquid, JavaScript and CSS. Integrated third-party apps and optimized store speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="section-header">
+                    <h2 class="section-title">Let's <span class="section-title-accent">Collaborate</span></h2>
+                    <p class="section-subtitle">Have a project in mind? Let's talk about your next big idea</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:dev.harris.khan@gmail.com">dev.harris.khan@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-label">Phone</div>
+                        <a href="tel:+923484037561">+92 348 4037561</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-label">Location</div>
+                        <span>Lahore, Pakistan</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/harris-khan-0a9b64427" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">in</a>
+                        <a href="https://github.com/ewcrown" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">gh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Harris Khan. All rights reserved.</p>
+        <p>Designed & Developed with passion | Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        const projects = [
+            // Shopify Plus
+            { name: 'Canna Cabana', url: 'cannacabana.com', platform: 'shopify', type: 'Shopify Plus' },
+
+            // Shopify Standard
+            { name: 'The Skin Theory', url: 'theskintheory.pk', platform: 'shopify', type: 'Skincare' },
+            { name: 'Momi Baby', url: 'momi.baby', platform: 'shopify', type: 'Baby' },
+            { name: 'Pinky Pact', url: 'pinkypact.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Ice Beanie', url: 'icebeanie.com', platform: 'shopify', type: 'Accessories' },
+            { name: 'Logo Official', url: 'logoofficial.com', platform: 'shopify', type: 'Streetwear' },
+            { name: 'Wavell', url: 'wavell.dk', platform: 'shopify', type: 'Lifestyle' },
+            { name: 'The Rug Shed', url: 'therugshed.co.uk', platform: 'shopify', type: 'Home' },
+            { name: 'MC Hurt', url: 'mchurt.eu', platform: 'shopify', type: 'Fashion' },
+            { name: 'Wertarbeit', url: 'w6-wertarbeit.de', platform: 'shopify', type: 'Artisan' },
+            { name: "Tod's N Teens", url: 'todsnteens.com', platform: 'shopify', type: 'Kids' },
+            { name: 'Island Living', url: 'islandliving.sg', platform: 'shopify', type: 'Lifestyle' },
+            { name: 'Drink Marquis', url: 'drinkmarquis.com', platform: 'shopify', type: 'Beverages' },
+            { name: 'Torelli', url: 'torelli.co.uk', platform: 'shopify', type: 'Fashion' },
+            { name: 'Cav Fab', url: 'cavfab.com', platform: 'shopify', type: 'Artisan' },
+            { name: 'Zaun Globus', url: 'zaunglobus.de', platform: 'shopify', type: 'Garden' },
+            { name: 'VNEN', url: 'vnen.de', platform: 'shopify', type: 'Fashion' },
+            { name: 'Ardor', url: 'ardor.pk', platform: 'shopify', type: 'Fashion' },
+            { name: 'Mushq', url: 'mushq.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Marc & Jason', url: 'marcandjason.com', platform: 'shopify', type: 'Accessories' },
+            { name: 'Bareeze Man', url: 'bareezeman.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Saleh Akashif', url: 'salehakashif.com.pk', platform: 'shopify', type: 'Fashion' },
+            { name: 'Oak & Teak', url: 'oakandteak.pk', platform: 'shopify', type: 'Furniture' },
+            { name: 'Sheikh Jee', url: 'sheikhjee.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Iznik Fashions', url: 'iznikfashions.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Esmel Official', url: 'esmelofficial.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Roheenaz', url: 'roheenaz.com', platform: 'shopify', type: 'Fashion' },
+            { name: 'Motifz', url: 'motifz.com.pk', platform: 'shopify', type: 'Fashion' },
+            { name: 'Sportea', url: 'sportea.com', platform: 'shopify', type: 'Sports' },
+            { name: 'D Quadrat', url: 'dquadrat-stores.de', platform: 'shopify', type: 'Fashion' },
+            { name: 'Laylo Pets', url: 'laylopets.com', platform: 'shopify', type: 'Pets' },
+            { name: 'Full Throttle', url: 'findingfullthrottle.com', platform: 'shopify', type: 'Lifestyle' },
+            { name: 'Dusch Kind', url: 'duschkind.de', platform: 'shopify', type: 'Beauty' },
+            { name: "Annie's Pops", url: 'anniespoochpops.com', platform: 'shopify', type: 'Pets' },
+            { name: 'Optics Shop', url: 'theopticshop.co.uk', platform: 'shopify', type: 'Eyewear' },
+            { name: 'North Naturals', url: 'northnaturals.com', platform: 'shopify', type: 'Health' },
+            { name: 'Wenjulan', url: 'wenjulan.com', platform: 'shopify', type: 'Fashion' },
+
+            // WordPress
+            { name: 'Engini AI', url: 'engini.ai', platform: 'wordpress', type: 'AI/SaaS' },
+            { name: 'Mi Properties', url: 'miproperties.pk', platform: 'wordpress', type: 'Real Estate' },
+            { name: 'Always Culture', url: 'alwaysculture.com', platform: 'wordpress', type: 'Media' },
+            { name: 'Beknown Online', url: 'beknownonline.com', platform: 'wordpress', type: 'Community' },
+            { name: 'Absco', url: 'absco.pk', platform: 'wordpress', type: 'Manufacturing' },
+            { name: 'Breeze Cool', url: 'breezecool.ae', platform: 'wordpress', type: 'HVAC' },
+
+            // MERN
+            { name: 'Eleevate Logistics', url: 'portal.eleevatelogistics.com', platform: 'mern', type: 'Logistics' },
+            { name: 'Nova Plus', url: 'novaplus.com', platform: 'mern', type: 'SaaS' },
+
+            // Other
+            { name: 'Nova Plus iOS', url: 'apps.apple.com/us/app/novaplus/id6741780646', platform: 'other', type: 'iOS App' },
+            { name: 'Nova Plus Android', url: 'play.google.com/store/apps/details?id=com.thenovaplus', platform: 'other', type: 'Android' },
+            { name: 'StrongDM', url: 'strongdm.com', platform: 'other', type: 'HubSpot' },
+            { name: 'Drive-In Auto', url: 'driveinautosound.com', platform: 'other', type: 'BigCommerce' },
+            { name: 'E-Knives', url: 'eknives.com', platform: 'other', type: 'BigCommerce' },
+            { name: 'Vero Linens', url: 'verolinens.com', platform: 'other', type: 'BigCommerce' },
+            { name: 'Sew Vac City', url: 'sewvaccity.com', platform: 'other', type: 'BigCommerce' },
+            { name: 'Anderson Pens', url: 'andersonpens.com', platform: 'other', type: 'BigCommerce' },
+        ];
+
+        let currentFilter = 'all';
+
+        function filterProjects(filter) {
+            currentFilter = filter;
+
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderProjects();
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+
+            let filtered = projects;
+            if (currentFilter !== 'all') {
+                filtered = projects.filter(p => p.platform === currentFilter);
+            }
+
+            grid.innerHTML = filtered.map((project, index) => `
+                <div class="project-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+                    <div class="project-badge">${project.type}</div>
+                    <h3 class="project-name">${project.name}</h3>
+                    <p class="project-url">${project.url}</p>
+                    <a href="https://${project.url}" target="_blank" rel="noopener noreferrer" class="project-link">Visit →</a>
+                </div>
+            `).join('');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Initial render
+        renderProjects();
+    </script>
+</body>
+</html>
